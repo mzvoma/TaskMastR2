@@ -1,0 +1,36 @@
+<div class="page-header">
+  <% if params[:proj].present? %>
+    <h1>Project: <%= @task_list.first.project.name %>
+    <span class="btn btn-danger btn-md" role="button" title="Deletes project and all tasks in the project"><%= link_to "Delete", "/projects/#{@task_list.first.project.id}/delete", {:style => 'color: #FFFFFF'} %></span></h1>
+  <% else %>
+    <h1>Your Tasks</h1>
+  <% end %>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Project</th>
+        <th>Task</th>
+        <th>Due Date</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+
+    <% @task_list.each do |task| %>
+      <tbody>
+      <tr>
+        <td><a href="/tasks?proj=<%= task.project.name %>"><%= task.project.name %></a></td>
+        <td><a href="/tasks/<%=task.id %>/show"><%= task.name %></a></td>
+        <td><%= task.due %></td>
+        <td><%= link_to "Edit", "/tasks/#{task.id}/edit?ref=home" %> |
+                <%= link_to "Delete", "/tasks/#{task.id}/delete" %>
+        </td>
+      </tr>
+    </tbody>
+    <% end %>
+    </table>
+</div>
+
+

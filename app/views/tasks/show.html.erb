@@ -1,0 +1,14 @@
+<div class="page-header">
+  <%= link_to "Edit", "/tasks/#{@task.id}/edit", :class => "btn btn-md btn-success pull-right" %>
+  <h1>Task Details</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+    <h3><%= @task.name %></h3>
+    <p class="lead"><%= @task.project.name %></p>
+    <p><%= @task.due %></p>
+  </div>
+</div>
+
+
