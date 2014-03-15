@@ -1,14 +1,5 @@
 class TasksController < ApplicationController
 
-  def mine
-    if params[:proj].present?
-      filter_project = Project.find_by(:name => params[:proj])
-      @task_list = Task.all.where(:project_id => filter_project.id)
-      @task_list = @task_list.order('name asc')
-    else
-    @task_list = Task.all.order('due asc')
-    end
-  end
 
   def index
     @task_list = Task.all.order('due asc')

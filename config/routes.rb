@@ -31,7 +31,6 @@ TaskMastR2::Application.routes.draw do
 
   # Read
   get "/tasks" => "tasks#index"
-  get "/tasks/mine" => "tasks#mine"
   get "/tasks/:task_id/show" => "tasks#show"
 
   # Update

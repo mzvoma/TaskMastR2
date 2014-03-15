@@ -2,11 +2,13 @@
   <h1>Add Members to Your Project</h1>
 </div>
 
+<% if @user.present? %>
+<% user_projects = @user.projects %>
 <form action="/memberships/create">
   <div class="form-group">
     <label>Select Project </label>
      <select name="project_id" class="form-control input-md">
-      <% Project.all.each do |project| %>
+      <% user_projects.all.each do |project| %>
         <option value="<%= project.id %>"><%= project.name %></option>
       <% end %>
     </select>
@@ -24,3 +26,6 @@
   or
   <a href="/tasks">Cancel</a>
 </form>
+
+<% end %>
+
