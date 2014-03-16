@@ -1,75 +1,20 @@
 <div class="jumbotron">
   <% if @user.present? %>
   <% task_group = @user.tasks %>
-    <h1>Hello, <%= @user.first_name %>!</h1>
+  <h1>Hello, <%= @user.first_name %>!</h1>
   <p>You have <%= task_group.count %> tasks on your plate. Let's get cranking...</p>
-  <p><a href="/tasks/new" class="btn btn-primary btn-lg" role="button">Create a Task &raquo;</a>&nbsp;&nbsp;&nbsp;<a href="/memberships/new" class="btn btn-info btn-lg" role="button">Add Team to Project &raquo;</a></p>
+  <p><a href="/tasks/new" class="btn btn-primary btn-lg" role="button">Create a Task &raquo;</a>&nbsp;&nbsp;&nbsp;
+  <a href="/memberships/new" class="btn btn-info btn-lg" role="button">Add Team to Project &raquo;</a></p>
 </div>
- <% if params[:proj].present? %>
- <% task_cat = @user.projects %>
- <% filt_proj = task_cat.find_by(:name => params[:proj]) %>
- <% task_filtered = Task.all.where(:project_id => filt_proj.id) %>
-    <h1>Project: <%= task_filtered.first.project.name %>
-    <span class="btn btn-danger btn-md" role="button" title="Deletes project and all tasks in the project"><%= link_to "Delete", "/projects/#{@task_list.first.project.id}/delete", {:style => 'color: #FFFFFF'} %></span></h1>
-    <div class="table-responsive">
-  <table class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th>Project</th>
-        <th>Task</th>
-        <th>Due Date</th>
-        <th>Edit</th>
-      </tr>
-    </thead>
 
-    <% task_filtered.each do |task| %>
-      <tbody>
-      <tr>
-        <td><a href="/tasks?proj=<%= task.project.name %>"><%= task.project.name %></a></td>
-        <td><a href="/tasks/<%=task.id %>/show"><%= task.name %></a></td>
-        <td><%= task.due %></td>
-        <td><%= link_to "Edit", "/tasks/#{task.id}/edit?ref=home" %> |
-                <%= link_to "Delete", "/tasks/#{task.id}/delete" %>
-        </td>
-      </tr>
-    </tbody>
+    <% if params[:proj].present? %>
+      <%= render 'projectinfo' %>
+    <% else %>
+      <%= render 'tasklist' %>
     <% end %>
-    </table>
-</div>
   <% else %>
-<h1>Your Tasks</h1>
- <div class="table-responsive">
-  <table class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th>Project</th>
-        <th>Task</th>
-        <th>Due Date</th>
-        <th>Edit</th>
-      </tr>
-    </thead>
+   <%= render 'notsignedin' %>
 
-    <% task_group = @user.tasks %>
-    <% task_group.each do |task| %>
-      <tbody>
-      <tr>
-        <td><a href="/tasks?proj=<%= task.project.name %>"><%= task.project.name %></a></td>
-        <td><a href="/tasks/<%=task.id %>/show"><%= task.name %></a></td>
-        <td><%= task.due %></a></td>
-        <td><%= link_to "Edit", "/tasks/#{task.id}/edit?ref=home" %> |
-                <%= link_to "Delete", "/tasks/#{task.id}/delete" %>
-       </tr>
-    </tbody>
-    <% end %>
-    </table>
+
   <% end %>
-
-  <% else %>
-  <h1>Hello Taskfinder!</h1>
-    <p>Sign up to become a Taskmaster or sign in to access your tasks</p>
-    <p><a href="/users/new" class="btn btn-primary btn-lg" role="button">Sign Up &raquo;</a></p>
-  <% end %>
-
-
-</div>
 

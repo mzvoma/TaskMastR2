@@ -14,12 +14,9 @@ TaskMastR2::Application.routes.draw do
    get "/users/:user_id/show" => 'users#show'
 
   # PROJECTS
-  # Create New Project for New Task
+  # Create
   get "/projects/new" => "projects#new"
-  get "/projects/newupdate" => "projects#newupdate"
-  # Create New Project for Editing Task
   get "/projects/create" => "projects#create"
-  get "/projects/creedit" => "projects#creedit"
 
   # Delete
   get "/projects/:project_id/delete" => "projects#destroy"
@@ -43,5 +40,7 @@ TaskMastR2::Application.routes.draw do
   #MEMBERSHIPS
   get "/memberships/new" => "memberships#new"
   get "/memberships/create" => "memberships#create"
+
+  # get "/memberships/:membership_id/delete" => "memberships#destroy"
 
 end

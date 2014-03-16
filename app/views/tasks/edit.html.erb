@@ -5,10 +5,13 @@
 <form action="/tasks/<%= @task.id %>/update">
   <div class="form-group">
 
-    <label>Select Project | <a href="/projects/newupdate" class="btn btn-primary btn-md" role="button">Create New Project</a></label>
-     <select selected="<%= @task.project.name %>" name="project_id" class="form-control input-md">
-      <% Project.all.each do |project| %>
-        <option value="<%= project.id %>"><%= project.name %></option>
+    <label>Select Project | <a href="/projects/new" class="btn btn-primary btn-md" role="button">Create New Project</a></label>
+     <select name="project_id" class="form-control input-md">
+     <% if @user.present? %>
+      <% user_projects = @user.projects.order('name asc') %>
+      <% user_projects.all.each do |project| %>
+        <option selected="<%= @task.project.id %>" value="<%= project.id %>"><%= project.name %></option>
+      <% end %>
       <% end %>
     </select>
   </div>
@@ -17,7 +20,7 @@
     <input value="<%= @task.name %>" name="name" type="text" class="form-control input-md" placeholder="Example: Take out the trash.">
   </div>
   <div class="form-group">
-    <label>Enter Task Deadline</label>
+    <label>Enter Due Date</label>
     <input value=<%= @task.due %> name="due" type="date" class="form-control input-md" placeholder="YYYY-MM-DD">
   </div>
   <!-- <div class="form-group">

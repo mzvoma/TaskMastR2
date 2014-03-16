@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
 
   def destroy
     reset_session
-    redirect_to root_url, notice: "See ya!"
+    redirect_to root_url, notice: "Until we meet again TaskMaster"
   end
 
   def create

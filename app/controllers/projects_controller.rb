@@ -3,22 +3,16 @@
   def new
   end
 
-  def newupdate
-  end
-
   def create
+    user = User.find_by(:id => session[:user_id])
     project = Project.new
-    project.name = params["name"]
-    project.save
-    redirect_to "/tasks/new", notice: "New Project Created"
+    project = user.projects.create(:name =>params["name"])
+    if project.valid? and project.save
+      redirect_to "/tasks/new", notice: "Project successfully created!"
+    else
+      redirect_to :back, notice: project.errors.full_messages.join('. ')
+    end
   end
-
-  # def creedit
-  #   project = Project.new
-  #   project.name = params["name"]
-  #   project.save
-  #   redirect_to "/", notice: "New Project Created"
-  # end
 
   def destroy
     project = Project.find_by(:id => params[:project_id])

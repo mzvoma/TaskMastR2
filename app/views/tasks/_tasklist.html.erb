@@ -1,0 +1,25 @@
+<h1>Your Tasks</h1>
+ <div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Project</th>
+        <th>Task</th>
+        <th>Due Date</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+
+    <% task_group = @user.tasks.order('projects.name', 'due asc') %>
+    <% task_group.each do |task| %>
+      <tbody>
+      <tr>
+        <td><a href="/tasks?proj=<%= task.project.name %>"><%= task.project.name %></a></td>
+        <td><a href="/tasks/<%=task.id %>/show"><%= task.name %></a></td>
+        <td><%= task.due %></a></td>
+        <td><%= link_to "Edit", "/tasks/#{task.id}/edit?ref=home" %> |
+                <%= link_to "Delete", "/tasks/#{task.id}/delete" %>
+       </tr>
+    </tbody>
+    <% end %>
+    </table>
