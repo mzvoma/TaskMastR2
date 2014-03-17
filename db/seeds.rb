@@ -2,22 +2,22 @@ User.destroy_all
 user_group = [ { :first_name => "Muchadei",
                   :last_name => "Zvoma",
                   :password => "rugby",
-                  :email => "mzvoma@gmail.com",
+                  :email => "mz@fakemail.com",
                 },
-                { :first_name => "Kudzai",
-                  :last_name => "Zvoma",
-                  :password => "rugby",
-                  :email => "kzvoma@gmail.com",
+                { :first_name => "Jeff",
+                  :last_name => "Cohen",
+                  :password => "hockey",
+                  :email => "jeff.co@fakemail.com",
+                },
+                { :first_name => "Brian",
+                  :last_name => "Eng",
+                  :password => "hockey",
+                  :email => "brian.eng@fakemail.com",
                 },
                 { :first_name => "Jolene",
-                  :last_name => "Harris",
+                  :last_name => "Harry",
                   :password => "rugby",
-                  :email => "jharris@gmail.com",
-                },
-                { :first_name => "Molly",
-                  :last_name => "Kenah",
-                  :password => "rugby",
-                  :email => "mkenah@gmail.com",
+                  :email => "mkenah@fakemail.com",
                 }
               ]
 
@@ -85,6 +85,7 @@ task_catalog.each do |task_info|
   t = Task.new
   t.name = task_info[:name]
   t.due = task_info[:due]
+  t.completed = task_info[:completed]
 
   project = Project.find_by(:name => task_info[:project_name])
   t.project_id = project.id
@@ -92,3 +93,20 @@ task_catalog.each do |task_info|
 end
 
 puts "There are now #{Task.count} tasks in the catalog."
+
+Membership.destroy_all
+membership_list = [ { :user_id => User.first.id, :project_id => Project.first.id},
+                                { :user_id => User.first.id, :project_id => Project.last.id},
+                                { :user_id => User.offset(1).first.id, :project_id => Project.last.id},
+                                { :user_id => User.offset(2).first.id, :project_id => Project.first.id},
+                                { :user_id => User.last.id, :project_id => Project.first.id},
+                                { :user_id => User.last.id, :project_id => Project.last.id}]
+
+membership_list.each do |mem_info|
+  m = Membership.new
+  m.user_id = mem_info[:user_id]
+  m.project_id = mem_info[:project_id]
+  m.save
+end
+
+puts "There are now #{Membership.count} memberships in the catalog."

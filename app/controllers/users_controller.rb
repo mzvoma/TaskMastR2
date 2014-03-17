@@ -9,8 +9,12 @@ class UsersController < ApplicationController
     user.last_name = params["last_name"]
     user.email = params["email"]
     user.password = params["password"]
-    user.save
-    redirect_to "/login", notice: "Welcome to TaskMastR! Please Login Below"
+    if user.valid? and user.save
+      redirect_to "/login", notice: "Welcome to TaskMastR! Please Login Below"
+    else
+      redirect_to :back, notice: user.errors.full_messages.join('. ')
+    end
+
   end
 
   def show

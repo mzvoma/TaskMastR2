@@ -11,7 +11,7 @@ TaskMastR2::Application.routes.draw do
   # Create
   get "/users/new" => 'users#new'
   get "/users/create" => 'users#create'
-   get "/users/:user_id/show" => 'users#show'
+  get "/users/:user_id/show" => 'users#show'
 
   # PROJECTS
   # Create
