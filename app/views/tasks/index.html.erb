@@ -3,8 +3,9 @@
   <% task_group = @user.tasks %>
   <h1>Hello, <%= @user.first_name %>!</h1>
   <p>You have <%= task_group.count %> tasks on your plate. Let's get cranking...</p>
-  <p><a href="/tasks/new" class="btn btn-primary btn-lg" role="button">Create a Task &raquo;</a>&nbsp;&nbsp;&nbsp;
-  <a href="/memberships/new" class="btn btn-info btn-lg" role="button">Add Team to Project &raquo;</a></p>
+  <p><a href="/projects/new" class="btn btn-success btn-lg" role="button">Create Project &raquo;</a>&nbsp;
+  <a href="/tasks/new" class="btn btn-primary btn-lg" role="button">Add Tasks &raquo;</a>&nbsp;
+  <a href="/memberships/new" class="btn btn-info btn-lg" role="button">Build Team &raquo;</a></p>
 </div>
 
     <% if params[:proj].present? %>

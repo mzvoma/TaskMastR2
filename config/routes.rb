@@ -41,6 +41,12 @@ TaskMastR2::Application.routes.draw do
   get "/memberships/new" => "memberships#new"
   get "/memberships/create" => "memberships#create"
 
+  # Delete (add in version 3)
   # get "/memberships/:membership_id/delete" => "memberships#destroy"
+
+
+  #WEATHER
+  get "/weather/search" => "weather#search"
+  get "/weather/conditions" => "weather#conditions"
 
 end
