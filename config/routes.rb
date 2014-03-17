@@ -33,6 +33,7 @@ TaskMastR2::Application.routes.draw do
   # Update
   get "/tasks/:task_id/edit" => "tasks#edit"
   get "/tasks/:task_id/update" => "tasks#update"
+  get "/tasks/:task_id/updatestatus" => "tasks#updatestatus"
 
   # Delete
   get "/tasks/:task_id/delete" => "tasks#destroy"

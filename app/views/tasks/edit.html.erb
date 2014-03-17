@@ -4,7 +4,6 @@
 
 <form action="/tasks/<%= @task.id %>/update">
   <div class="form-group">
-
     <label>Select Project | <a href="/projects/new" class="btn btn-primary btn-md" role="button">Create New Project</a></label>
      <select name="project_id" class="form-control input-md">
      <% if @user.present? %>
@@ -16,6 +15,13 @@
     </select>
   </div>
   <div class="form-group">
+    <label>Update Status</label>
+    <select name="completed" class="form-control input-md">
+      <option value="false">In Progress</option>
+      <option value= "true">Completed</option>
+    </select>
+  </div>
+  <div class="form-group">
     <label>Enter Task Name:</label>
     <input value="<%= @task.name %>" name="name" type="text" class="form-control input-md" placeholder="Example: Take out the trash.">
   </div>
@@ -23,11 +29,12 @@
     <label>Enter Due Date</label>
     <input value=<%= @task.due %> name="due" type="date" class="form-control input-md" placeholder="YYYY-MM-DD">
   </div>
+
   <!-- <div class="form-group">
     <label>Enter Task Details:</label>
     <textarea name="details" class="form-control input-md"  rows="5" ></textarea>
   </div> -->
-  <button type="submit" class="btn btn-success btn-md">Create</button>
+  <button type="submit" class="btn btn-success btn-md">Update</button>
   or
   <a href="/tasks">Cancel</a>
 </form>

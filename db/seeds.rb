@@ -51,32 +51,32 @@ task_catalog = [ { :name => "Buy Milk",
                     },
                     { :name => "Get quarters from JewelOsco",
                       :project_name => 'Groceries',
-                      :due => "2014-03-02"
+                      :due => "2014-03-02",
                       :completed => true
                     },
                     { :name => "Buy Cereal",
                       :project_name => 'Groceries',
-                      :due => "2014-03-02"
+                      :due => "2014-03-02",
                       :completed => false
                     },
                     { :name => "CRUD for Users",
                       :project_name => 'KIEI925',
-                      :due => "2014-04-09"
+                      :due => "2014-04-09",
                       :completed => true
                     },
                     { :name => "Add taskmaster columns to Task model",
                       :project_name => 'KIEI925',
-                      :due => "2014-04-09"
+                      :due => "2014-04-09",
                       :completed => false
                     },
                     { :name => "Dream Job Discussion",
                       :project_name => 'Job Search',
-                      :due => "2014-04-24"
+                      :due => "2014-04-24",
                       :completed => false
                     },
                     { :name => "Find Keynote Speaker",
                       :project_name => 'High Tech Conference',
-                      :due => "2014-07-09"
+                      :due => "2014-07-09",
                       :completed => false
                     },
                     ]

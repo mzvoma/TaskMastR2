@@ -4,4 +4,6 @@ class Task < ActiveRecord::Base
 
   validates :name, :due, presence: true
 
+
+
 end

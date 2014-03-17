@@ -6,6 +6,7 @@
         <th>Project</th>
         <th>Task</th>
         <th>Due Date</th>
+        <th>Status</th>
         <th>Edit</th>
       </tr>
     </thead>
@@ -17,7 +18,14 @@
         <td><a href="/tasks?proj=<%= task.project.name %>"><%= task.project.name %></a></td>
         <td><a href="/tasks/<%=task.id %>/show"><%= task.name %></a></td>
         <td><%= task.due %></a></td>
-        <td><%= link_to "Edit", "/tasks/#{task.id}/edit?ref=home" %> |
+        <td><%= link_to "/tasks/#{task.id}/updatestatus" do %>
+          <% if task.completed %>
+            <i class="fa fa-check-square-o fa-2x"></i>
+          <% else %>
+            <i class="fa fa-square-o fa-2x"></i>
+          <% end %>
+        <% end %></td>
+        <td><%= link_to "Edit", "/tasks/#{task.id}/edit" %> |
                 <%= link_to "Delete", "/tasks/#{task.id}/delete" %>
        </tr>
     </tbody>

@@ -18,6 +18,7 @@ class TasksController < ApplicationController
     task.project_id = params["project_id"]
     task.name = params["name"]
     task.due = params["due"]
+    task.completed = false
     if task.valid? and task.save
       redirect_to "/tasks", notice: "Task successfully created!"
     else
@@ -36,6 +37,7 @@ class TasksController < ApplicationController
     task.name = params["name"]
     task.project_id = params["project_id"]
     task.due = params["due"]
+    task.completed = params["completed"]
     if task.valid? and task.save
       redirect_to "/tasks", notice: "Task successfully updated!"
     else
@@ -44,7 +46,13 @@ class TasksController < ApplicationController
 
   end
 
- def destroy
+  def updatestatus
+    task = Task.find_by(:id => params[:task_id])
+    task.toggle! :completed
+    redirect_to :back
+  end
+
+  def destroy
     task = Task.find_by(:id => params[:task_id])
     task.destroy
     redirect_to "/tasks", notice: "Task has been deleted"
